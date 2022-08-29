@@ -10,7 +10,7 @@
 			editable="true"
 			layout="ResponsiveGridLayout"
 			title="{i18n>title}"
-			labelSpanXL="4"
+			labelSpanXL="3"
 			labelSpanL="4"
 			labelSpanM="3"
 			labelSpanS="12"
