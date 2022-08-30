@@ -12,12 +12,15 @@ sap.ui.define([
 
             },
 
-            genderFormatter: function (sGender) {
+            genderFormatter: function (sKey) {
 
                 let oView = this.getView();
                 let oI18nModel = oView.getModel("i18n");
                 let oResourceBundle = oI18nModel.getResourceBundle();
+                let sText = oResourceBundle.getText(sKey);
+                return sText;
 
+                /*
                 switch(sGender){
                     case "female":
                         return oResourceBundle.getText("female");
@@ -28,7 +31,7 @@ sap.ui.define([
                     default:
                         return "?";
                 }
- 
+                */
                 /*
                 if(sGender === "female"){
                     return oResourceBundle.getText("female");
@@ -36,6 +39,24 @@ sap.ui.define([
                     return oResourceBundle.getText("male");
                 }
                 */
+            },
+
+            /*
+            getLegaleAgeText: function(iAge){
+                if(iAge >= 18){
+                    return "Yes";
+                }else{
+                    return "No";
+                }
+            },
+
+            getLegaleAgeState: function(iAge){
+                if(iAge >= 18){
+                    return "Success";
+                }else{
+                    return "Error";
+                }
             }
+            */
         });
     });

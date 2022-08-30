@@ -65,10 +65,15 @@
                 <Label text="Age"/>
                 <Text text="{/age}"/>
 
-                <Label text="Legal age"/>
+                <Label text="Legal age 1"/>
                 <ObjectStatus
                     text="{= ${/age} >= 18 ? 'Yes' : 'No'}"
                     state="{= ${/age} >= 18 ? 'Success' : 'Error'}" />
+
+                <Label text="Legal age 2"/>
+                <ObjectStatus
+                    text="{path: '/age', formatter: '.getLegaleAgeText' }"
+                    state="{path: '/age', formatter: '.getLegaleAgeState' }" />
                 -->
 			</f:content>
 		</f:SimpleForm>
