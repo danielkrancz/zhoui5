@@ -1,15 +1,37 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageBox"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller, MessageBox) {
         "use strict";
 
         return Controller.extend("at.clouddna.training00.zhoui5.controller.Customer", {
             onInit: function () {
 
+            },
+
+            onSavePressed: function(){
+                /*
+                let oInputCustomerId = this.getView().byId("edit_input_customerid");
+                let sCustomerId = oInputCustomerId.getValue();
+                */
+
+                let oView = this.getView();
+                let oModel = oView.getModel();
+                let oData = oModel.getData();
+
+                MessageBox.success(JSON.stringify(oData), {
+                    title: "Speichervorgang",                                    // default
+                    onClose: null,                                       // default
+                    styleClass: "",                                      // default
+                    actions: sap.m.MessageBox.Action.OK,                 // default
+                    emphasizedAction: sap.m.MessageBox.Action.OK,        // default
+                    initialFocus: null,                                  // default
+                    textDirection: sap.ui.core.TextDirection.Inherit     // default
+                });
             },
 
             genderFormatter: function (sKey) {

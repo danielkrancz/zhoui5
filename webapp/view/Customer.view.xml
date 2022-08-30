@@ -13,70 +13,7 @@
         </List>
         -->
         
-        <f:SimpleForm id="SimpleFormChange354"
-			editable="true"
-			layout="ResponsiveGridLayout"
-			title="{i18n>title}"
-			labelSpanXL="4"
-			labelSpanL="4"
-			labelSpanM="3"
-			labelSpanS="12"
-			adjustLabelSpan="false"
-			emptySpanXL="4"
-			emptySpanL="4"
-			emptySpanM="3"
-			emptySpanS="0"
-			columnsXL="1"
-			columnsL="1"
-			columnsM="1"
-			singleContainerFullSize="false">
-			<f:content>
-				<Label id="app_label_customerid" text="{i18n>app.customerid}" labelFor="app_input_customerid"/>
-                <Input id="app_input_customerid" value="{path: '/customerid'}"/>
-
-                <Label id="app_label_firstname" text="{i18n>app.firstname}" labelFor="app_input_firstname"/>
-                <Input id="app_input_firstname" value="{path: '/firstname'}"/>
-
-                <Label id="app_label_lastname" text="{i18n>app.lastname}" labelFor="app_input_lastname"/>
-                <Input id="app_input_lastname" value="{ path: '/lastname' }"/>
-
-                <Label id="app_label_title" text="{i18n>app.title}" labelFor="app_input_title"/>
-                <Input id="app_input_title" value="{/title}"/>
-
-                <Label id="app_label_gender" text="{i18n>app.gender}" labelFor="app_select_gender"/>
-                <Select id="app_select_gender" items="{gendersModel>/genders}">
-                    <items>
-                        <core:Item key="{gendersModel>}" text="{ path: 'gendersModel>', formatter: '.genderFormatter' }"/>
-                    <!-- 
-                        <core:Item key="{gendersModel>}" text="{= ${gendersModel>} === 'female' ? ${i18n>female} : ${i18n>male} }"/>
-                    -->
-                    </items>
-                </Select>
-
-                <Label id="app_label_email" text="{i18n>app.email}" labelFor="app_input_email"/>
-                <Input id="app_input_email" value="{/email}"/>
-
-                <Label id="app_label_phone" text="{i18n>app.phone}" labelFor="app_input_phone"/>
-                <Input id="app_input_phone" value="{/phone}"/>
-
-                <Label id="app_label_website" text="{i18n>app.website}" labelFor="app_input_website"/>
-                <Input id="app_input_website" value="{/website}"/>
-                <!-- 
-                <Label text="Age"/>
-                <Text text="{/age}"/>
-
-                <Label text="Legal age 1"/>
-                <ObjectStatus
-                    text="{= ${/age} >= 18 ? 'Yes' : 'No'}"
-                    state="{= ${/age} >= 18 ? 'Success' : 'Error'}" />
-
-                <Label text="Legal age 2"/>
-                <ObjectStatus
-                    text="{path: '/age', formatter: '.getLegaleAgeText' }"
-                    state="{path: '/age', formatter: '.getLegaleAgeState' }" />
-                -->
-			</f:content>
-		</f:SimpleForm>
+        <core:Fragment id="app_change_fragment" fragmentName="at.clouddna.training00.zhoui5.view.fragment.ChangeCustomer" type="XML"/>
 
             <!--
             <HBox id="app_hbox_customerid">
@@ -87,6 +24,15 @@
             </HBox>
             -->
         </content>
+
+        <footer>
+            <Bar id="app_bar_footer">
+                <contentRight>
+                    <Button id="app_button_save" text="{i18n>save}" type="Accept" icon="sap-icon://save" press="onSavePressed"/>
+                </contentRight>
+            </Bar>
+        </footer>
+
     </Page>
 
 </mvc:View>
