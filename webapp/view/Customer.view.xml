@@ -32,13 +32,13 @@
 			singleContainerFullSize="false">
 			<f:content>
 				<Label id="app_label_customerid" text="{i18n>app.customerid}" labelFor="app_input_customerid"/>
-                <Input id="app_input_customerid" value="{/customerid}"/>
+                <Input id="app_input_customerid" value="{path: '/customerid'}"/>
 
                 <Label id="app_label_firstname" text="{i18n>app.firstname}" labelFor="app_input_firstname"/>
-                <Input id="app_input_firstname" value="{/firstname}"/>
+                <Input id="app_input_firstname" value="{path: '/firstname'}"/>
 
                 <Label id="app_label_lastname" text="{i18n>app.lastname}" labelFor="app_input_lastname"/>
-                <Input id="app_input_lastname" value="{/lastname}"/>
+                <Input id="app_input_lastname" value="{ path: '/lastname' }"/>
 
                 <Label id="app_label_title" text="{i18n>app.title}" labelFor="app_input_title"/>
                 <Input id="app_input_title" value="{/title}"/>
@@ -46,7 +46,10 @@
                 <Label id="app_label_gender" text="{i18n>app.gender}" labelFor="app_select_gender"/>
                 <Select id="app_select_gender" items="{gendersModel>/genders}">
                     <items>
+                        <core:Item key="{gendersModel>}" text="{ path: 'gendersModel>', formatter: '.genderFormatter' }"/>
+                    <!-- 
                         <core:Item key="{gendersModel>}" text="{= ${gendersModel>} === 'female' ? ${i18n>female} : ${i18n>male} }"/>
+                    -->
                     </items>
                 </Select>
 
