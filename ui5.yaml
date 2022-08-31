@@ -16,8 +16,8 @@ server:
             - /test-resources
           url: https://ui5.sap.com
         backend:
-          - path: /sap
-            url: http://localhost
+          - path: /sap # Alle Anfragen, die mit einem relativen Pfad (beginnend mit "/sap") werden umgeleitet
+            destination: CloudDNA_WDF_FSD # Name der Destination
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

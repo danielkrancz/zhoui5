@@ -37,17 +37,24 @@ sap.ui.define([
                     oPage.insertContent(this._fragmentList[sFragmentName]);
                 }else{
                     //3. das Fragment laden
-                    Fragment.load({
+
+                    let oPromise = Fragment.load({
                         id: this.getView().createId(sFragmentName),
                         name: "at.clouddna.training00.zhoui5.view.fragment." + sFragmentName,
                         controller: this
-                    }).then(function(oFragment){
-                        //4. Fragment für später abspeichern (in die Klassenvariable _fragmentList)
-                        this._fragmentList[sFragmentName] = oFragment;
-                        
-                        //5. Fragment in die Page einfügen
-                        oPage.insertContent(oFragment);
-                    }.bind(this));
+                    });
+                    
+
+                    oPromise.then(
+                        function(oFragment){
+                            //4. Fragment für später abspeichern (in die Klassenvariable _fragmentList)
+                            this._fragmentList[sFragmentName] = oFragment;
+                            
+                            //5. Fragment in die Page einfügen
+                            oPage.insertContent(oFragment);
+                        }.bind(this)
+                    );
+
                 }
             },
 
