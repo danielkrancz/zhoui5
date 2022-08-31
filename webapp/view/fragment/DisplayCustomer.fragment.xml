@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <f:SimpleForm id="display_simplerform_customer"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="{i18n>title}"
+			labelSpanXL="4"
+			labelSpanL="4"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="3"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false">
+			<f:content>
+				<Label id="display_label_customerid" text="{i18n>app.customerid}" labelFor="display_text_customerid"/>
+                <Text id="display_text_customerid" text="{path: '/customerid'}"/>
+
+                <Label id="display_label_firstname" text="{i18n>app.firstname}" labelFor="display_text_firstname"/>
+                <Text id="display_text_firstname" text="{path: '/firstname'}"/>
+
+                <Label id="display_label_lastname" text="{i18n>app.lastname}" labelFor="display_text_lastname"/>
+                <Text id="display_text_lastname" text="{ path: '/lastname' }"/>
+
+                <Label id="display_label_title" text="{i18n>app.title}" labelFor="display_text_title"/>
+                <Text id="display_text_title" text="{/title}"/>
+
+                <Label id="display_label_gender" text="{i18n>app.gender}" labelFor="display_select_gender"/>
+                <Text id="display_text_gender" text="{= ${/gender} === 'female' ? ${i18n>female} : ${i18n>male} }"/>
+
+                <Label id="display_label_email" text="{i18n>app.email}" labelFor="display_text_email"/>
+                <Text id="display_text_email" text="{/email}"/>
+
+                <Label id="display_label_phone" text="{i18n>app.phone}" labelFor="display_text_phone"/>
+                <Text id="display_text_phone" text="{/phone}"/>
+
+                <Label id="display_label_website" text="{i18n>app.website}" labelFor="display_text_website"/>
+                <Text id="display_text_website" text="{/website}"/>
+                <!-- 
+                <Label text="Age"/>
+                <Text text="{/age}"/>
+
+                <Label text="Legal age 1"/>
+                <ObjectStatus
+                    text="{= ${/age} >= 18 ? 'Yes' : 'No'}"
+                    state="{= ${/age} >= 18 ? 'Success' : 'Error'}" />
+
+                <Label text="Legal age 2"/>
+                <ObjectStatus
+                    text="{path: '/age', formatter: '.getLegaleAgeText' }"
+                    state="{path: '/age', formatter: '.getLegaleAgeState' }" />
+                -->
+			</f:content>
+		</f:SimpleForm>
+</core:FragmentDefinition>

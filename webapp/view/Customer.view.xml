@@ -4,6 +4,32 @@
     xmlns="sap.m" xmlns:f="sap.ui.layout.form">
 
     <Page id="page" title="{i18n>title}">
+        <customHeader>
+            <OverflowToolbar>
+                <Title text="{i18n>title}"/>
+                <ToolbarSpacer/>
+                <Button id="app_button_edit" type="Emphasized" text="{i18n>edit}" icon="sap-icon://edit" visible="{= !${editModel>/editmode} }" press="onEditPressed"/>
+            </OverflowToolbar>
+        <!-- 
+            <Bar>
+                <contentLeft>
+                    <Title text="{i18n>title}"/>
+                </contentLeft>
+
+                <contentRight>
+                    <Button id="app_button_edit" type="Emphasized" text="{i18n>edit}" icon="sap-icon://edit"/>
+                    <Button type="Emphasized" text="{i18n>edit}" icon="sap-icon://edit"/>
+                    <Button type="Emphasized" text="{i18n>edit}" icon="sap-icon://edit"/>
+                    <Button type="Emphasized" text="{i18n>edit}" icon="sap-icon://edit"/>
+                    <Button type="Emphasized" text="{i18n>edit}" icon="sap-icon://edit"/>
+                    <Button type="Emphasized" text="{i18n>edit}" icon="sap-icon://edit"/>
+                    <Button type="Emphasized" text="{i18n>edit}" icon="sap-icon://edit"/>
+                    <Button type="Emphasized" text="{i18n>edit}" icon="sap-icon://edit"/>
+                </contentRight>
+            </Bar>
+        -->
+        </customHeader> 
+
         <content>
         <!-- 
         <List headerText="Customers" items="{/customers}">
@@ -12,9 +38,11 @@
             </items>
         </List>
         -->
-        
+        <!-- 
         <core:Fragment id="app_change_fragment" fragmentName="at.clouddna.training00.zhoui5.view.fragment.ChangeCustomer" type="XML"/>
 
+        <core:Fragment id="app_display_fragment" fragmentName="at.clouddna.training00.zhoui5.view.fragment.DisplayCustomer" type="XML"/>
+        -->
             <!--
             <HBox id="app_hbox_customerid">
                 <items>
@@ -28,7 +56,8 @@
         <footer>
             <Bar id="app_bar_footer">
                 <contentRight>
-                    <Button id="app_button_save" text="{i18n>save}" type="Accept" icon="sap-icon://save" press="onSavePressed"/>
+                    <Button id="app_button_save" text="{i18n>save}" type="Accept" icon="sap-icon://save" press="onSavePressed" visible="{editModel>/editmode}"/>
+                    <Button id="app_button_cancel" text="{i18n>cancel}" type="Reject" icon="sap-icon://cancel" press="onCancelPressed" visible="{editModel>/editmode}"/>
                 </contentRight>
             </Bar>
         </footer>

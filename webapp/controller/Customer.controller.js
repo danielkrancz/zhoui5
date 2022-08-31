@@ -1,17 +1,77 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/Fragment"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, MessageBox) {
+    function (Controller, MessageBox, JSONModel, Fragment) {
         "use strict";
 
         return Controller.extend("at.clouddna.training00.zhoui5.controller.Customer", {
-            onInit: function () {
 
+            _fragmentList: {},
+
+            //Lebenszyklusmethoden der View:
+            onInit: function () {
+                let oModel = new JSONModel({
+                    editmode: false
+                });
+
+                this.getView().setModel(oModel, "editModel");
+
+                this._showCustomerFragment("DisplayCustomer");
             },
+
+            _showCustomerFragment: function(sFragmentName){
+                let oPage = this.getView().byId("page");
+
+                //1. leeren wir den aktuellen Content
+                oPage.removeAllContent();
+                
+                //2. Überprüfen wir, ob das Fragment schonmal geladen worden ist
+                if(this._fragmentList[sFragmentName]){
+                    //4. Fragment in die Page einfügen
+                    oPage.insertContent(this._fragmentList[sFragmentName]);
+                }else{
+                    //3. das Fragment laden
+                    Fragment.load({
+                        id: this.getView().createId(sFragmentName),
+                        name: "at.clouddna.training00.zhoui5.view.fragment." + sFragmentName,
+                        controller: this
+                    }).then(function(oFragment){
+                        //4. Fragment für später abspeichern (in die Klassenvariable _fragmentList)
+                        this._fragmentList[sFragmentName] = oFragment;
+                        
+                        //5. Fragment in die Page einfügen
+                        oPage.insertContent(oFragment);
+                    }.bind(this));
+                }
+            },
+
+            onEditPressed: function(){
+                this._toggleEdit(true);
+            },
+
+            onCancelPressed: function(){
+                this._toggleEdit(false);
+            },
+
+            _toggleEdit: function(bEditMode){
+                let oEditModel = this.getView().getModel("editModel");
+
+                oEditModel.setProperty("/editmode", bEditMode);
+
+                this._showCustomerFragment(bEditMode ? "ChangeCustomer" : "DisplayCustomer");
+            },
+            
+            /*
+            onExit: function () {},
+            onBeforeRendering: function () {},
+            onAfterRendering: function () {},
+            */
 
             onSavePressed: function(){
                 /*
@@ -32,6 +92,8 @@ sap.ui.define([
                     initialFocus: null,                                  // default
                     textDirection: sap.ui.core.TextDirection.Inherit     // default
                 });
+
+                this._toggleEdit(false);
             },
 
             genderFormatter: function (sKey) {
